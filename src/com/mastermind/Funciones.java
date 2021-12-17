@@ -14,12 +14,20 @@ public class Funciones {
 
     public static String pedirSecuencia(int intentos,Tablero tablero) {
         String sec="";
+        int controlINT;
         do {
             sec= JOptionPane.showInputDialog(tablero.getCifraPista()+"\n! Adivina Codigo !  intentos: "+(intentos+1)+" de "+10);
             if (sec.length()!=5){
                 JOptionPane.showMessageDialog(null,"Introduce ->5<- digitos");
             }
         } while (sec.length()!=5);
+
+        try {
+            controlINT=Integer.parseInt(sec);
+        } catch (NumberFormatException err){
+            JOptionPane.showMessageDialog(null,"Tiene que ser digitos");
+            sec=pedirSecuencia(intentos, tablero);
+        }
         return sec;
     }
 
